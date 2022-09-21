@@ -1,7 +1,7 @@
 // Importing Mongoose
 const { Schema, model } = require("mongoose");
 
-// Homework 23 Subdoc Population
+// Homework Activities 23 Subdoc Population
 
 const userSchema = new Schema(
   {
