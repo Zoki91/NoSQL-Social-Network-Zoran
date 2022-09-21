@@ -1,7 +1,7 @@
 // Import Routes
 const router = require('express').Router()
-const userRoutes = require('./user-routes')
-const thoughtRoutes = require('./thought-routes')
+const userRoutes = require('./api/user-routes')
+const thoughtRoutes = require('./api/thought-routes')
 
 // Setting up Routers
 router.use('/users', userRoutes)

@@ -17,10 +17,10 @@ const userSchema = new Schema(
       required: true,
       unique: true,
       // Validating Email Address with Mongoose - https://thewebdev.info/2022/03/16/how-to-validate-email-syntax-with-mongoose/
-      match: [
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-        "Please fill a valid email address",
-      ],
+      // match: [
+      //   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      //   "Please fill a valid email address",
+      // ],
     },
 
     thoughts: [
@@ -39,7 +39,7 @@ const userSchema = new Schema(
   },
   {
     toJSON: {
-      virtual: true,
+      virtuals: true,
     },
     id: false,
   }
