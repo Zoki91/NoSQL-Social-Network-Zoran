@@ -1,48 +1,63 @@
 // Importing the Models
-const { User, Thought } = require("../models");
+const { Thought, User } = require("../models");
 
 // Homework Activities 25 & 26 CRUD Subdoc
 
+// GET all Thoughts
 const thoughtController = {
-  // GET all Thoughts
+  // get all Thoughts
   getAllThought(req, res) {
     Thought.find({})
-      .then((data) => res.json(data))
-      .catch((err) => res.status(400).json(err));
+      .populate({
+        path: "reactions",
+        select: "-__v",
+      })
+      .select("-__v")
+      .sort({ _id: -1 })
+      .then((thoughtData) => {
+        return res.json(thoughtData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(400);
+      });
   },
 
   // GET One Thought by ID
   getThoughtById(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
-      .then((data) => {
-        if (!data) {
+      .then((thoughtData) => {
+        if (!thoughtData) {
           return res
             .status(404)
             .json({ message: 'No "Thought" found with this ID!' });
         } else {
-          return res.json(data);
+          return res.json(thoughtData);
         }
       })
       .catch((err) => res.status(400).json(err));
   },
 
   // Create a Thought
-  createThought(req, res) {
-    Thought.create(req.body)
+  createThought({ params, body }, res) {
+    Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: req.body.userId },
+          { _id: body.userId },
           { $push: { thoughts: _id } },
           { new: true }
         );
       })
-      .then((thought) => {
-        !thought
-          ? res.status(404).json({ message: 'No "User" found with this ID!' })
-          : res.json(thought);
+      .then((thoughtData) => {
+        if (!thoughtData) {
+          return res
+            .status(404)
+            .json({ message: "Thought created but no user with this id!" });
+        }
+        res.json({ message: "Thought successfully created!" });
       })
-      .catch((err) => res.status(400).json(err));
+      .catch((err) => res.json(err));
   },
 
   // Update a Thought by ID
@@ -52,13 +67,13 @@ const thoughtController = {
       { $set: req.body },
       { new: true, runValidators: true }
     )
-      .then((data) => {
-        if (!data) {
+      .then((thoughtData) => {
+        if (!thoughtData) {
           return res
             .status(404)
             .json({ message: 'No "Thought" found with this ID!' });
         } else {
-          return res.json(data);
+          return res.json(thoughtData);
         }
       })
       .catch((err) => res.status(400).json(err));

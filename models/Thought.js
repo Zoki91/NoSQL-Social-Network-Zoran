@@ -1,9 +1,9 @@
 // Importing Mongoose and Moment JS
 const { Schema, model, Types } = require('mongoose');
-const moment = require('moment')
+
 
 // Creating the Reaction Schema
-const reactionSchema = new Schema({
+const ReactionSchema = new Schema({
   reactionId: {
     type: Schema.Types.ObjectId,
     default: () => new Types.ObjectId()
@@ -22,21 +22,20 @@ const reactionSchema = new Schema({
 
   createdAt: {
     type: Date,
-    default: Date.now,
-    get: createdAtVal => moveMessagePortToContext(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+    default: Date.now(),
+ 
 }},
 {
   toJSON:{
-      virtuals: true,
-      getters: true
+      getters: true,
   },
-  id: false
+  id: false,
 }
 )
 
 // Creating the Thought Schema
 
-const thoughtSchema = new Schema({
+const ThoughtSchema = new Schema({
   thoughtText: {
     type: String,
     required: true,
@@ -46,15 +45,14 @@ const thoughtSchema = new Schema({
 
   createdAt: {
     type: Date,
-    default: Date.now,
-    get: createdAtVal => moveMessagePortToContext(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
+    default: Date.now(),
   },
 
   username: {
     type: String,
     required: true
   },
-  reactions: [reactionSchema]
+  reactions: [ReactionSchema]
 },
 {
   toJSON: {
@@ -69,14 +67,14 @@ const thoughtSchema = new Schema({
 // Create a Virtual Property `reactionCount` that gets and sets reaction count
 // Homework 22 Stu Virtuals
 
-thoughtSchema.
+ThoughtSchema.
 virtual('reactionCount')
 .get(function () {
   return this.reactions.length;
 });
 
-// Create's the Thought model using the thoughtSchema
-const Thought = model('Thought', thoughtSchema);
+// Create's the Thought model using the ThoughtSchema
+const Thought = model('Thought', ThoughtSchema);
 
 // Exports the Thought model
 module.exports = Thought;

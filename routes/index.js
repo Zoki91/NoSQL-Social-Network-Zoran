@@ -1,10 +1,13 @@
-// Import Routes
-const router = require('express').Router()
-const userRoutes = require('./api/user-routes')
-const thoughtRoutes = require('./api/thought-routes')
+// Homework Activities 25 & 26 CRUD Subdoc
 
-// Setting up Routers
-router.use('/users', userRoutes)
-router.use('/thoughts', thoughtRoutes)
+// Importing Express and API
+const router = require('express').Router()
+const apiRoutes = require('./api')
+
+router.use('/api', apiRoutes)
+
+router.use((req, res) => {
+    res.status(404).send(`404 ERROR`)
+})
 
 module.exports = router
