@@ -15,7 +15,6 @@ Your Challenge is to build an API for a social network web application where use
 - [Installation](#installation)
 - [Usage](#usage)
 - [License](#license)
-- [Screenshots](#screenshots)
 - [Video Link](#Video-Link)
 - [Questions](#questions)
 - [GitHub](#github)
@@ -24,13 +23,13 @@ Your Challenge is to build an API for a social network web application where use
 
 ## Installation
 
-In order to install this project, you will need to run `npm install` on your terminal and run the command `node server.js` to get started.
+In order to install this project, you will need to run `npm install` on your terminal and run the command `npm start` to get started.
 
 #
 
 ## Usage
 
-You can use this program in your node.js terminal, VS Code terminal or any other windows terminal. Simply open the server.js file in the terminal at your desired path location and input `node server.js`
+You can use this program in your node.js terminal, VS Code terminal or any other windows terminal. Simply open the server.js file in the terminal at your desired path location and input `npm start`
 
 #
 
@@ -40,17 +39,9 @@ You can use this program in your node.js terminal, VS Code terminal or any other
 
 #
 
-## Screenshots
-
-![App Screenshot](https://via.placeholder.com/300.png/09f/fffC/O)
-#
-![App Screenshot](https://via.placeholder.com/300.png/09f/fffC/O)
-
-#
-
 ## Video Link
 
-Click the link to go to the video to view this live [VIDEO LINK](xxxx)
+Click the link to go to the video to view this live [VIDEO LINK](https://drive.google.com/file/d/1jiBaWolXoM4Z2_AF8j9gErIeTmGN1SBz/view)
 
 #
 
